@@ -1,0 +1,2669 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fly, Animal Shelter">
+    <meta name="author" content="Deep Harquissandas">
+    <title>Animal Shelter</title>
+	
+	<!-- core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome.min.css" rel="stylesheet">
+    <link href="prettyPhoto.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <link href="responsive.css" rel="stylesheet">
+
+
+ 
+
+
+
+       <div id="notification" class="hidden"></div>
+
+
+
+
+
+<style>
+/* Стилі для модального вікна */
+/* Модальне вікно */
+
+
+
+
+
+
+
+
+
+.btn2-volunteer {
+  display: inline-block;
+    background-color: #007bff; /* золотий колір */
+    color: #fff;
+    padding: 25px 50px; /* збільшено padding для більших кнопок */
+    font-size: 1.5em; /* більший шрифт */
+    border-radius: 20px; /* більш округлі краї */
+    text-align: center;
+    margin: 20px 0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn2-volunteer:hover {
+    background-color: #0057b4; /* трохи темніший золотий при наведенні */
+}
+
+.btn2-volunteer:active {
+    transform: translateY(1px); /* Легке опускання кнопки при натисканні */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.modal {
+    display: none; /* Початково приховане */
+    position: fixed;
+    z-index: 1; /* Ставимо поверх всіх елементів */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Дозволяє прокручувати, якщо вікно велике */
+    background-color: rgba(0, 0, 0, 0.4); /* Напівпрозорий фон */
+    padding-top: 100px; /* Відступ зверху */
+}
+
+
+
+/* Контейнер контенту модального вікна */
+.modal-content {
+    width: 50%; /* Ширина модального вікна */
+    max-width: 600px; /* Максимальна ширина */
+    min-width: 400px; /* Мінімальна ширина */
+    height: auto; /* Висота адаптується до контенту */
+    background: rgba(248, 249, 250, 0.9); /* Напівпрозорий фон */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+/* Кнопка закриття */
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Заголовок для форми */
+.modal-content h2 {
+    text-align: center;
+    color: #1f1f20;
+    margin-bottom: 20px;
+}
+
+/* Стилі для форми в модальному вікні */
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Кнопка для відправки форми */
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Стилі для модального вікна */
+.modal {
+    display: none; /* Початково приховане */
+    position: fixed;
+    z-index: 1; /* Ставимо поверх всіх елементів */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Дозволяє прокручувати, якщо вікно велике */
+    background-color: rgba(0, 0, 0, 0.4); /* Напівпрозорий фон */
+    padding-top: 100px; /* Відступ зверху */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745; /* Зелений для успіху */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .toast.hidden {
+    display: none;
+  }
+
+  .toast.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+
+
+
+
+
+  #notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  #notification.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #notification.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+#contact-info {
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(248, 249, 250, 0.9); /* Напівпрозорий фон */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#contact-info h2 {
+    text-align: center;
+    color: #1f1f20;
+    margin-bottom: 15px; /* Відступ під заголовком */
+}
+
+#contact-info p.lead {
+    font-size: 1.5em;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.gmap-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gmap iframe {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.map-content {
+    padding: 20px;
+}
+
+#cont address {
+    text-align: center;
+    color: #333;
+}
+
+#cont h1 {
+    color: black;
+    margin-bottom: 10px;
+}
+
+#cont p {
+    margin: 5px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+    .partnerss {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .partnerss ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+    }
+
+    .partnerss li {
+        margin: 0 10px;
+        position: relative;
+    }
+
+    .photo-cardss, .photo-cardss2 {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .photo-cardss img {
+        max-width: 350px;
+        transform: translateY(-400px) translateX(-320px);
+    }
+
+ 
+
+
+    .photo-cardss2 img {
+    max-width: 500px;
+    transform: translateY(-400px) translateX(400px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .found-pet-form {
+        max-width: 500px;
+        margin: 50px auto;
+        background: rgba(248, 249, 250, 0.9); /* Напівпрозорий фон */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        position: relative;
+    }
+
+    .found-pet-form h2 {
+        text-align: center;
+        color: #1f1f20;
+        margin-bottom: 20px;
+    }
+
+    .found-pet-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .found-pet-form input,
+    .found-pet-form select,
+    .found-pet-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .found-pet-form input:focus,
+    .found-pet-form select:focus,
+    .found-pet-form textarea:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .found-pet-form button {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+    .found-pet-form button:hover {
+        background: #0056b3;
+    }
+
+    .center-image {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .center-image img {
+        max-width: 100px;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+.photo-list {
+    display: flex; /* Розташування зображень в ряд */
+    justify-content: flex-start; /* Зміщення зображень на лівий край */
+    gap: 0; /* Зменшення відстані між зображеннями до нуля */
+}
+
+.photo-cards img, .photo-cards2 img {
+    width: 400px; /* Ширина зображення */
+    height: auto; /* Збереження пропорцій */
+}
+
+.photo-cards, .photo-cards2 {
+    display: flex;
+    justify-content: center; /* Центрування зображення всередині контейнера */
+    align-items: center;
+    margin-top: -100px; 
+}
+
+.photo-cards2 {
+    margin-left: -1600px; /* Відступ ліворуч, щоб перемістити друге зображення до краю */
+}
+
+.photo-cards {
+    margin-right: -600px; /* Зміщення першого зображення праворуч */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основний контейнер */
+#blog {
+    display: flex;
+    align-items: center; /* Центрування по вертикалі */
+    justify-content: center; /* Центрування по горизонталі */
+    min-height: 100vh; /* Висота 100% від екрану */
+    background-color: #f8f9fa; /* Світлий фон */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Внутрішній обгортковий контейнер */
+.content-wrapper {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Контейнери з історіями */
+.stories {
+    display: flex;
+    flex-direction: column; /* Вертикальне вирівнювання блоків */
+    gap: 20px; /* Відступ між блоками */
+}
+
+/* Окрема історія */
+.story {
+    display: flex;
+    align-items: center; /* Вирівнювання по вертикалі */
+    gap: 20px; /* Відступ між зображенням і текстом */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Зображення */
+.story img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Текстова частина */
+.story .text {
+    text-align: left;
+}
+
+.story .text h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #333;
+}
+
+.story .text h4 {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #777;
+}
+
+.story .text p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+    .stories {
+        gap: 15px; /* Менші відступи між блоками */
+    }
+
+    .story {
+        flex-direction: column; /* Відображення елементів вертикально */
+        text-align: center;
+    }
+
+    .story img {
+        margin-bottom: 15px;
+    }
+
+    .story .text {
+        text-align: center;
+    }
+}
+
+       
+     
+    .btn-volunteer {
+    display: inline-block;
+    background-color: #007BFF; /* золотий колір */
+    color: #fff;
+    padding: 25px 50px; /* збільшено padding для більших кнопок */
+    font-size: 1.5em; /* більший шрифт */
+    border-radius: 20px; /* більш округлі краї */
+    text-align: center;
+    margin: 20px 0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-volunteer:hover {
+    background-color: #007BFF; /* трохи темніший золотий при наведенні */
+}
+     
+
+    .btn-volunteer {
+    display: inline-block;
+    background-color: #FFD700; /* золотий колір */
+    color: #fff;
+    padding: 25px 50px; /* збільшено padding для більших кнопок */
+    font-size: 1.5em; /* більший шрифт */
+    border-radius: 20px; /* більш округлі краї */
+    text-align: center;
+    margin: 20px 0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-volunteer:hover {
+    background-color: #FFC300; /* трохи темніший золотий при наведенні */
+}
+
+.btn-blue {
+    display: inline-block;
+    background-color: #007BFF; /* голубий колір */
+    color: #fff;
+    padding: 20px 40px; /* збільшено padding для більшої кнопки */
+    font-size: 1.3em; /* більший шрифт */
+    border-radius: 20px; /* більш округлі краї */
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: -10px; /* Негативний margin для накладання */
+}
+
+.btn-blue:hover {
+    background-color: #0056b3; /* темніший голубий при наведенні */
+}
+
+
+
+
+         /* Загальний контейнер для форми та фотографії */
+        .feedback-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Вирівнюємо по верхньому краю */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Стиль для фотографії */
+        .feedback-image {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .feedback-image img {
+            width: 100%; /* Фото розтягується на всю ширину контейнера */
+            max-width: 600px; /* Фото буде ширшим за форму, але не перевищить 600px */
+            height: auto; /* Автоматична висота, щоб зберегти пропорції */
+            object-fit: cover; /* Обрізає зображення по межах контейнера */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стилі для форми */
+        .feedback-form {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+            max-width: 500px; /* Ширина форми */
+            margin-left: 20px;
+        }
+
+        .feedback-form h2 {
+            text-align: center;
+            color: #1f1f20;
+            margin-bottom: 20px;
+        }
+
+        .feedback-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .feedback-form button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .feedback-form button:hover {
+            background: #007bff;
+        }
+    
+
+
+
+
+
+
+
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .feedback-form button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .feedback-form button:hover {
+            background: #007bff;
+        }
+    
+
+
+
+
+
+
+
+.donation-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Центруємо по вертикалі */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Стиль для фотографії */
+        .donation-image {
+            flex: 1;
+            padding-left: 20px;
+            height: 100%; /* Встановлюємо висоту 100% від контейнера */
+            align-self: center; /* Центруємо фото по вертикалі */
+        }
+
+        .donation-image img {
+            width: 100%;
+            height: 100%; /* Фото займатиме всю висоту контейнера */
+            object-fit: cover; /* Обрізає фото, зберігаючи пропорції */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стилі для форми донату */
+        .donation-form {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+            max-width: 500px;
+            margin-right: 20px;
+        }
+
+        .donation-form h2 {
+            text-align: center;
+             color: #1f1f20;
+            margin-bottom: 20px;
+        }
+
+        .donation-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .donation-form input,
+        .donation-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .donation-form input:focus,
+        .donation-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .donation-form button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .donation-form button:hover {
+            background: #0056b3;
+        }
+
+      
+
+
+
+
+
+
+
+
+
+
+
+       
+/* Стили для блоку з фотографіями */
+.partners ul {
+    display: flex;
+    flex-direction: row-reverse; /* Розташовуємо фотографії вертикально */
+    align-items: center; /* Центруємо фотографії по горизонталі */
+    padding: 0;
+    list-style: none;
+}
+
+/* Стилі для кожної картки */
+.photo-card {
+    display: block; /* Забезпечуємо вертикальне розташування */
+    width: 300px; /* Встановлюємо ширину 300px */
+    height: 300px; /* Встановлюємо висоту 300px */
+    margin: 10px 0; /* Відстань між картками */
+    overflow: hidden;
+    border-radius: 10px; /* Округлені кути */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Стилі для зображення всередині картки */
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Вирізаємо частину зображення для заповнення картки */
+    transition: transform 0.3s ease;
+}
+
+/* Можна додати ефект при наведенні */
+.photo-card:hover img {
+    transform: scale(1.05); /* Збільшуємо зображення при наведенні */
+}
+.button-container {
+    margin: 5px 0; /* Зменшено відступи між текстом і кнопкою */
+    text-align: center; /* Центрує кнопку */
+}
+
+.oval-button {
+    padding: 30px 60px; /* Збільшення внутрішніх відступів для збільшення розміру */
+    font-size: 20px; /* Збільшення розміру тексту */
+    border-radius: 25px; /* Овалоподібна форма */
+    background-color: #007bff; /* Колір фону (можна змінити) */
+    color: white; /* Колір тексту */
+    border: none; /* Без обводки */
+    cursor: pointer; /* Змінює курсор на pointer при наведенні */
+    transition: all 0.3s ease; /* Анімація зміни всіх властивостей */
+}
+
+.oval-button:hover {
+    background-color: #0056b3; /* Колір при наведенні */
+}
+
+.oval-button:active {
+    transform: scale(0.95); /* Зменшення кнопки при натисканні */
+}
+
+
+
+.center {
+    margin-top: 50px; /* Збільшено відступ від верхнього краю */
+    text-align: center; /* Центрування тексту */
+}
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    #header .navbar-header {
+    display: flex;
+    align-items: center;
+}
+
+#header .navbar-brand img {
+    width: 80px; /* Налаштуйте розмір за необхідності */
+    height: auto;
+}
+
+#header .navbar-collapse {
+    display: flex;
+    align-items: center;
+}
+
+#header .nav {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+#header .nav li {
+    margin: 0 10px; /* Відступ між пунктами меню */
+}
+
+
+
+
+#footer {
+    width: 100%;
+ 
+    color: white; /* Колір тексту */
+}
+
+#footer .container-fluid {
+    padding: 10px 15px; /* Додатковий відступ */
+}
+
+#footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#footer .footer-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#footer .footer-nav li {
+    margin: 0 10px; /* Відступи між пунктами меню */
+}
+
+#footer .footer-nav li a {
+    font-size: 18px; /* Розмір шрифту */
+    text-decoration: none;
+    color: white; /* Колір тексту посилань */
+}
+
+#footer .col-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрує вміст по горизонталі */
+}
+
+.slider-img {
+    position: relative;
+    top: 30px; /* Зміщення зображення вверх */
+    right: 50px; /* Зміщення зображення вправо */
+}
+
+/* Стиль для особливого зображення */
+
+
+    </style>
+    <!--[if IE 11]>
+    <!--<script type="text/javascript">-->
+    <!--<script src="js/html5shiv.js"></script>-->
+    <!--<script src="js/respond.min.js"></script>-->
+    <!--[endif]-->
+    
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body class="homepage">
+
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                       <div class="social">
+                            <ul class="social-share">
+                                <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://uk.linkedin.com/"><i class="fa fa-linkedin"></i></a></li> 
+                                <li><a href="http://www.skype.com/en/"><i class="fa fa-skype"></i></a></li>
+                            </ul>
+                            
+                       </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="imganimal/r logo .png" alt="logo"></a>
+                </div>
+				
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        
+                        <li style="font-size: 18px;"><a href="#info">Про нас</a></li>
+                        <li style="font-size: 18px;"><a href="#reviews">Відгуки</a></li> 
+                        <li style="font-size: 18px;"><a href="#animal">Взяти друга</a></li>
+                        <li style="font-size: 18px;"><a href="#donet">Допомогти</a></li>
+						<li style="font-size: 18px;"><a href="#volonter">Наші волонтери</a></li>
+                        <li style="font-size: 18px;"><a href="#info-animall">Знайшли тварину?</a></li>
+                        <li style="font-size: 18px;"><a href="#aboutus">Локація</a></li>  
+                    
+
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+		
+    </header><!--/header-->
+
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+
+                <div class="item active" style="background-image: url(images/slider/bg1.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 align="center">Наша місія:</h1>
+                                    <h2 id="carousal-description" align="center"> Ми створили притулок, щоб дати безпечний і люблячий дім тваринам, які опинилися в біді. Наше головне завдання — допомогти кожній тварині знайти свій шанс на нове життя, де вона буде щаслива і доглянута. Ми віримо, що кожна тварина заслуговує на любов і повагу, і ми працюємо, щоб зробити це реальністю.</p>
+                                </div>
+                            </div>
+
+                            
+                            <div class="col--sm-6 hidden-xs">
+                                <div class="slider-img">
+                                    <img src="images/slider/pngwing.com (8).png" class="img-responsive">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!--/.item-->
+
+                <div class="item" style="background-image: url(images/slider/bg2.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 align="center">Наша робота:</h1>
+                                    <h2 id="carousal-description" align="center"> У притулку ми забезпечуємо ветеринарний догляд, годування та притулок для наших підопічних. Кожна тварина отримує індивідуальний підхід і підтримку, необхідну для відновлення фізичного і емоційного здоров’я. Ми також активно працюємо над соціалізацією тварин, щоб вони могли адаптуватися до нових умов і знайти своїх людей.</h2>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 hidden-xs">
+                                <div class="slider-img">
+                                    <img src="images/slider/labrador retriever dog adorable yellow_15324130.png" class="img-responsive">
+                                </div>
+                            </div>
+
+                        </div>              
+                    </div>
+                </div><!--/.item-->
+
+                <div class="item" style="background-image: url(images/slider/bg3.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 align="center">Долучайтеся до нас:</h1>
+                                    <h2 id="carousal-description" align="center">Ми запрошуємо волонтерів і прихильників, які хочуть допомогти тваринам і стати частиною нашої великої родини. Ваша підтримка, будь то фінансова допомога, добровільна праця чи прості слова підтримки, можуть змінити життя наших чотирилапих друзів. Разом ми робимо світ кращим для кожного пухнастого друга, який потребує допомоги.</h2>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 hidden-xs">
+                                <div class="slider-img">
+                                    <img src="images/slider/—Pngtree—a cat that is sitting_15922653.PNG" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.item-->
+            </div><!--/.carousel-inner-->
+        </div><!--/.carousel-->
+
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </section><!--/#main-slider-->
+
+
+
+
+
+
+
+
+
+
+    <div id="info">
+    <section id="feature" >
+        <div class="container">
+           <div class="center wow fadeInDown">
+                <h2>Хто ми ? </h2>
+                <p class="lead">Ми – місце, де кожна тваринка знаходить другий шанс на щасливе життя. У нашому притулку працює віддана команда, готова реагувати на всі потреби наших пухнастих мешканців. Наші спеціалізовані ветеринари та доглядальники піклуються про здоров’я та добробут кожного улюбленця. Завдяки їхньому професіоналізму та щирій турботі, тварини отримують найкращий догляд і підтримку. </p>
+            </div>
+
+            <div class="row">
+                <div class="features">
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-bullhorn"></i>
+                            <h2>Пожертування</h2>
+                            <h3>Ви можете підтримати наш притулок коштами.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-comments"></i>
+                            <h2>Відгуки</h2>
+                            <h3>На нашому сайті ви можете залишити відкур про нашу роботу.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-eye"></i>
+                            <h2>Прогулянки</h2>
+                            <h3>Ви можете ходити на прогулянки з нашими тваринами</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-chevron-right"></i>
+                            <h2>Чистота і гігієна</h2>
+                            <h3>Прибирання, санітарний контроль для запобігання поширенню хвороб.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-cogs"></i>
+                            <h2>Персонал</h2>
+                            <h3>Кваліфіковані співробітники, які знаються на ветеринарії.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-heart"></i>
+                            <h2>Гуманність і турбота</h2>
+                            <h3>Ми забезпечуєм безпечне, комфортне та любляче середовище для тварин.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                </div><!--/.services-->
+            </div><!--/.row-->    
+        </div><!--/.container-->
+    </section><!--/#feature-->
+</div>
+
+<div id="reviews"></div>
+
+    <section id="middle">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>Відгуки про нашу роботу:</h2>
+                <p class="lead">Нижче ви можете побачити, як наш персонал був оцінений у недавньому опитуванні. Ми сподіваємося, що це заохотить вас зробити пожертву або навіть виділити трохи часу зі свого насиченого життя, щоб стати волонтером у притулку для тварин.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 wow fadeInDown">
+                    <div class="skill">
+                        <h2>Наші працівники</h2>
+                        <p>Оцінки, які отримав наш персонал :</p>
+
+                        <div class="progress-wrap">
+                            <h3>Доглядальники</h3>
+                            <div class="progress">
+                              <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                <span class="bar-width">85%</span>
+                              </div>
+
+                            </div>
+                        </div>
+
+                        <div class="progress-wrap">
+                            <h3>Ветеринари</h3>
+                            <div class="progress">
+                              <div class="progress-bar color2" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                               <span class="bar-width">95%</span>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-wrap">
+                            <h3>Безпека</h3>
+                            <div class="progress">
+                              <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                <span class="bar-width">80%</span>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-wrap">
+                            <h3>Волонтери</h3>
+                            <div class="progress">
+                              <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                <span class="bar-width">90%</span>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/.col-sm-6-->
+
+                <div class="col-sm-6 wow fadeInDown">
+                    <div class="accordion">
+                        <h2>Чому люди люблять нас?</h2>
+                        <p>Ось деякі відгуки, які ми отримали.</p>
+                        <div class="panel-group" id="accordion1">
+                          <div class="panel panel-default">
+                            <div class="panel-heading active">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+                                    Приголомшливо
+
+                                  <i class="fa fa-angle-right pull-right"></i>
+                                </a>
+                              </h3>
+                            </div>
+
+                            <div id="collapseOne1" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                                  <div class="media accordion-inner">
+                                        <div class="media-body">
+                                             <!-- <h4>Great Shows</h4> -->
+                                             <p>Я була вражена рівнем турботи та любові, які тут надають тваринам. Персонал дуже уважний до потреб кожного собаки та кота. Я навіть взяла собі додому котика, і він чудово адаптувався завдяки добрій роботі волонтерів. Дуже рекомендую цей притулок!  </p>
+                                        </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">
+                                    Друге життя для тварин
+                                  <i class="fa fa-angle-right pull-right"></i>
+                                </a>
+                              </h3>
+                            </div>
+                            <div id="collapseTwo1" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                Цей притулок справжній порятунок для собак і котів, які опинилися у важких ситуаціях. Умови утримання тут ідеальні: тварини доглянуті, нагодовані та здорові. Особливо подобається, що вони допомагають знайти домівку для кожної тварини. Велика подяка всій команді!                              </div>
+                            </div>
+                          </div>
+
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">
+                                    Чистота та професіоналізм
+                                  <i class="fa fa-angle-right pull-right"></i>
+                                </a>
+                              </h3>
+                            </div>
+                            <div id="collapseThree1" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                Дуже затишний і чистий притулок, де тварини оточені любов’ю. Я завжди приходжу сюди як волонтер і бачу, як професійно підходять до кожної справи. Собаки й коти тут виглядають щасливими та доглянутими. Це місце заслуговує на підтримку!                              </div>
+                            </div>
+                          </div>
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#middle-->
+
+
+    </div>
+
+
+
+
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 wow fadeInDown">
+                        <div class="media">
+                            <div class="parrent pull-left">
+                                <ul class="nav nav-tabs nav-stacked">
+                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01">Будь ласка, donate!</a></li>
+                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Будь ласка, волонтер !</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="parent media-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade" id="tab1">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                 <h2>Пожертування</h2>
+                                                 <p id="encourage-tab">Ваші пожертви — це єдиний спосіб, завдяки якому ми можемо зміцнити свої позиції та стати великим притулком. Як ви знаєте, ми є неприбутковою організацією, і це означає, що нам потрібна ваша допомога, щоб стати притулком, який ви хочете бачити. Догляд за птахами — це складне завдання, і нам потрібно багато коштів, щоб забезпечити їм належні умови, тому ми просимо вас про підтримку.</p>
+                                                 <a href="#donet">Пожертування</a>
+                                                
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                     <div class="tab-pane fade active in" id="tab2">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                 <h2>Волонтер</h2>
+                                                 <p id="encourage-tab">Нам потрібні волонтери для догляду за котами та собаками на додаток до тих працівників, яких ми вже маємо. Ці волонтери є надзвичайно важливими, адже, оскільки ми працюємо як неприбутковий притулок, ми потребуємо добрих людей, які готові виділити трохи часу зі свого насиченого життя, щоб допомагати безкоштовно, лише з доброти свого серця. Це забезпечить нашим котам і собакам найкращий догляд і увагу. </p>
+                                                 <!-- <a href="volunteer.html">Волонтер</a>    -->
+                                                 <a href="#volonters">Волонтер</a>
+                                               
+                                                 
+                                            </div>
+                                        </div>
+                                     </div>
+                                 </div> <!--/.tab-content-->  
+                            </div> <!--/.media-body--> 
+                        </div> <!--/.media-->                    
+                </div><!--/.col-sm-6-->
+
+                <div class="col-xs-12 col-sm-4 wow fadeInDown">
+                    <div class="testimonial">
+                     
+                         <div class="media testimonial-inner">
+                            <div class="pull-left">
+                                <img height="100" width="100" class="img-responsive img-circle" src="images/blog/boy.png">
+                            </div>
+                            <div class="media-body">
+                                <p>Пожертви — це те, що підтримує цей чудовий притулок, і саме тому я збираюся донати до цього притулку , що можу.</p>
+                                <span><strong>Тарас Шевченко/</strong> Клієнт</span>
+                            </div>
+                         </div>
+
+                         <div class="media testimonial-inner">
+                            <div class="pull-left">
+                                <img height="100" width="100" class="img-responsive img-circle" src="images/team-member.jpg">
+                            </div>
+                            <div class="media-body">
+                                <p>Ми, як доглядальники в цьому притулку, завжди раді, коли волонтери приходять і працюють у притулку, показуючи свою любов до тварин.</p>
+                                <span><strong>Маковська Тетяна/</strong> Головний доглядальник</span>
+                            </div>
+                         </div>
+
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+
+
+
+
+
+
+
+
+        
+<section><!--/#content--> 
+    <div class="feedback-container">
+        <!-- Ліва частина з фотографією -->
+        <div class="feedback-image">
+            <img src="imganimal/depositphotos_77389014-stock-photo-dogs-people-connection-adoption.jpg" alt="Фото" />
+        </div>
+
+        <!-- Права частина з формою -->
+        <div class="feedback-form">
+            <h2>Залиште свій відгук</h2>
+            <form id="feedbackForm">
+                <label for="name">Ваше ім'я:</label>
+                <input type="text" id="name" name="name" placeholder="Введіть ваше ім'я" required />
+
+                <label for="feedback">Ваш відгук:</label>
+                <textarea id="feedback" name="feedback" rows="4" placeholder="Напишіть свій відгук тут..." required></textarea>
+
+                <button type="submit">Надіслати</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Тост повідомлення -->
+    <div id="toast" class="toast hidden">
+        <span id="toast-message"></span>
+    </div>
+</section><!--/#contact-page-->
+
+
+<script>
+    // Функція для показу тосту
+    function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toast-message");
+
+        toastMessage.textContent = message;
+        toast.style.backgroundColor = type === "success" ? "#28a745" : "#dc3545"; // Зелене для успіху, червоне для помилки
+
+        toast.classList.add("show");
+        toast.classList.remove("hidden");
+
+        // Автоматичне приховування через 3 секунди
+        setTimeout(() => {
+            toast.classList.remove("show");
+            toast.classList.add("hidden");
+        }, 3000);
+    }
+
+    // Обробка форми відгуку
+    document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Зупиняє перезавантаження сторінки
+
+        const name = document.getElementById('name').value;
+        const feedback = document.getElementById('feedback').value;
+
+        // Перевірка на порожні поля
+        if (!name || !feedback) {
+            showToast('Будь ласка, заповніть всі поля.', 'error');
+            return;
+        }
+
+        // Відправка даних на сервер
+        const response = await fetch('http://localhost:3000/api/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, feedback }),
+        });
+
+        if (response.ok) {
+            showToast('Ваш відгук успішно надіслано!'); // Зелене повідомлення
+            document.getElementById('feedbackForm').reset(); // Очищаємо форму після відправки
+        } else {
+            const data = await response.json();
+            showToast(data.message || 'Щось пішло не так. Спробуйте ще раз.', 'error');
+        }
+    });
+</script>
+
+       >
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section id="conatcat-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="pull-left">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="media-body">
+                            <h2>Маєте питання або хочете дізнатися більше інформації?</h2>
+                            <p>У нас є віддана команда, яка відповість на всі ваші питання. Ми також будемо раді дати вам поради щодо нових програм волонтерства та пожертв.<br /><br />Наш контактний номер: <a href="tel:+1234567890">0973110158</a>
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.container-->    
+    </section><!--/#conatcat-info-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+ <div id="animal">
+    <section id="partner">
+
+
+
+    <!-- Кнопка під текстом -->
+<!-- <a href="javascript:void(0);" class="btn2-volunteer" id="adopt-btn">Забрати друга</a> -->
+
+<!-- Модальне вікно для усиновлення -->
+<div id="adopt-info-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Інформація про усиновлення</h2>
+
+        <!-- Форма для усиновлення -->
+        <div class="modal-body">
+            <form id="adopt-form">
+                <div class="form-group">
+                    <label for="first-name">Ім'я</label>
+                    <input type="text" class="form-control" id="first-name" name="first-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Прізвище</label>
+                    <input type="text" class="form-control" id="last-name" name="last-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Номер телефону</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Емейл</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <input type="hidden" id="pet-id" name="pet-id">
+                <button type="submit" class="btn btn-primary">Відправити</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="center wow fadeInDown"> 
+    <h2 style="font-size: 40px; font-weight: bold; color: #333;">Усиновлення тварин</h2>
+</div>
+
+<h2 style="font-size: 36px; font-weight: bold; color: #333;">Фільтрувати тварин</h2>
+<form id="filter-form">
+    <label for="filter-type" style="font-size: 24px; font-weight: bold; color: #333;">Тип тварини:</label>
+    <select id="filter-type" name="type" style="font-size: 20px; padding: 15px 20px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #ccc;">
+        <option value="">Усі</option>
+        <option value="dog">Собака</option>
+        <option value="cat">Кіт</option>
+    </select>
+
+    <label for="filter-age" style="font-size: 24px; font-weight: bold; color: #333;">Вік:</label>
+    <select id="filter-age" name="age" style="font-size: 20px; padding: 15px 20px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #ccc;">
+        <option value="">Усі</option>
+        <option value="puppy">До 1 року</option>
+        <option value="adult">1-5 років</option>
+        <option value="senior">Старше 5 років</option>
+    </select>
+
+    <button type="submit" class="filter-btn" style="font-size: 22px; background-color: #007bff; color: white; padding: 15px 30px; border: none; border-radius: 25px; cursor: pointer;">
+        Фільтрувати
+    </button>
+</form>
+
+<div id="pets-list">
+    <!-- Сюди будуть виводитись результати фільтрації -->
+</div>
+
+<script>
+// Додано для синіх кнопок "Усиновити" для кожної тварини
+document.addEventListener('DOMContentLoaded', () => {
+    const petCards = document.querySelectorAll('.pet-card');
+    petCards.forEach(card => {
+        const adoptButton = card.querySelector('.adopt-btn');
+        if (adoptButton) {
+            adoptButton.style.backgroundColor = '#007bff'; // Голубий колір кнопки
+            adoptButton.style.color = 'white'; // Білий текст
+            adoptButton.style.fontSize = '18px';
+            adoptButton.style.padding = '10px 20px';
+            adoptButton.style.border = 'none';
+            adoptButton.style.borderRadius = '25px'; // Округлені кінці
+            adoptButton.style.cursor = 'pointer';
+        }
+    });
+});
+
+</script>
+
+
+</section>
+
+
+
+
+
+
+<style>
+
+
+
+/* Контейнер для карток тварин */
+#pets-list {
+    display: grid;                         /* Використовуємо Grid для більш гнучкого розміщення карток */
+    grid-template-columns: repeat(7, 1fr);  /* 7 колонок для карток */
+    gap: 24px;                             /* Простір між картками */
+    justify-items: center;                 /* Вирівнювання елементів по горизонталі в кожній колонці */
+    align-items: center;                   /* Вирівнювання елементів по вертикалі */
+    justify-content: center;               /* Вирівнювання всього контенту по горизонталі */
+    align-content: center;                 /* Вирівнювання всього контенту по вертикалі */
+}
+
+
+/* Стиль для кожної картки тварини */
+.pet-card {
+    color: #0057b4;
+    width: 200px;              /* Ширина картки */
+    border: 1px solid #ccc;    /* Обводка картки */
+    border-radius: 10px;       /* Заокруглені кути картки */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;    /* Розміщуємо елементи по вертикалі всередині картки */
+    align-items: center;       /* Вирівнювання елементів по центру */
+    text-align: center;        /* Вирівнювання тексту по центру */
+    background-color: #f9f9f9; /* Фон картки */
+}
+
+/* Стиль для зображень тварин */
+.pet-card img {
+    width: 100px;              /* Ширина зображення */
+    height: 100px;             /* Висота зображення */
+    border-radius: 50%;        /* Заокруглені кути для фото */
+    object-fit: cover;         /* Зберігає пропорції зображення */
+    margin-bottom: 10px;       /* Простір між фото та текстом */
+}
+
+/* Кнопка усиновлення */
+.adopt-btn {
+    background-color: #007bff; /* Синій колір кнопки */
+    color: white;              /* Білий текст */
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;       /* Округлені кути кнопки */
+    cursor: pointer;
+    margin-top: 10px;          /* Простір між кнопкою та текстом */
+}
+
+.adopt-btn:hover {
+    background-color: #0056b3; /* Темніший колір при наведенні */
+}
+
+
+</style>
+
+
+<script>
+
+
+
+
+
+
+
+
+const dogPhotos = [
+    "uploads/dog1.jpg",
+    "uploads/dog2.jpg",
+    "uploads/dog3.jpg",
+    "uploads/dog4.jpg"
+];
+
+const catPhotos = [
+    "uploads/cat1.jpg",
+    "uploads/cat2.jpg",
+    "uploads/cat3.jpg",
+    "uploads/cat4.jpg"
+];
+
+
+
+
+
+function getRandomPhoto(type) {
+    if (type === "dog") {
+        const randomIndex = Math.floor(Math.random() * dogPhotos.length);
+        return dogPhotos[randomIndex];
+    } else if (type === "cat") {
+        const randomIndex = Math.floor(Math.random() * catPhotos.length);
+        return catPhotos[randomIndex];
+    } else {
+        return "default.jpg"; // Вибір фото за замовчуванням, якщо тип не визначено
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Вибір форми фільтрації та контейнера для списку тварин
+const filterForm = document.getElementById("filter-form");
+const petsList = document.getElementById("pets-list");
+
+// Додавання обробника події на форму
+filterForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Забороняємо стандартне відправлення форми
+
+    // Отримуємо вибрані фільтри
+    const type = document.getElementById("filter-type").value;
+    const age = document.getElementById("filter-age").value;
+
+    // Формуємо URL для запиту на сервер
+    const url = `/api/filter-pets?type=${type}&age=${age}`;
+
+    // Відправка запиту та обробка результату
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            // Очищуємо список тварин
+            petsList.innerHTML = "";
+
+            if (data.length === 0) {
+                petsList.innerHTML = "<p>Тварин за вашим запитом не знайдено.</p>";
+            } else {
+                // Створюємо картки тварин
+                data.forEach((pet) => {
+                    const petCard = document.createElement("div");
+                    petCard.classList.add("pet-card");
+
+                    // Отримуємо випадкову фотографію для тварини
+                    const petPhoto = getRandomPhoto(pet.type);
+
+                    petCard.innerHTML = `
+                        <img src="${petPhoto}" alt="Фото ${pet.type}">
+                        <h3>${pet.name || pet.type}</h3>
+                        <p>Вік: ${pet.age}</p>
+                        <p>Колір: ${pet.color}</p>
+                        <button class="adopt-btn" data-pet-id="${pet.id}">Усиновити</button>
+                    `;
+
+                    petsList.appendChild(petCard);
+                });
+            }
+        })
+        .catch((error) => {
+            console.error("Помилка при завантаженні тварин:", error);
+            petsList.innerHTML = "<p>Сталася помилка при завантаженні даних.</p>";
+        });
+});
+
+
+
+
+
+
+// Обробка натискання на кнопку усиновлення
+document.addEventListener("click", function(e) {
+    if (e.target && e.target.classList.contains('adopt-btn')) {
+        const petId = e.target.dataset.petId; // Отримуємо ID тварини
+        document.getElementById("pet-id").value = petId;
+        document.getElementById("adopt-info-modal").style.display = "block";
+    }
+});
+
+// Закрити модальне вікно при натисканні на хрестик
+document.getElementsByClassName("close-btn")[0].addEventListener("click", function() {
+    document.getElementById("adopt-info-modal").style.display = "none";
+});
+
+// Закрити модальне вікно при кліку поза його межами
+window.onclick = function(event) {
+    if (event.target === document.getElementById("adopt-info-modal")) {
+        document.getElementById("adopt-info-modal").style.display = "none";
+    }
+};
+
+// Обробка форми усиновлення
+document.getElementById("adopt-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Отримуємо дані форми
+    const firstName = document.getElementById("first-name").value;
+    const lastName = document.getElementById("last-name").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const petId = document.getElementById("pet-id").value;
+
+    // Перевірка на заповненість полів
+    if (!firstName || !lastName || !phone || !email || !petId) {
+        return alert("Будь ласка, заповніть всі поля!");
+    }
+
+    // Викликаємо API для усиновлення
+    fetch("/api/adopt", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            phone: phone,
+            email: email,
+            pet_id: petId,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Помилка усиновлення:", error);
+        alert("Сталася помилка при обробці усиновлення.");
+    });
+
+    // Закриваємо модальне вікно після надсилання
+    document.getElementById("adopt-info-modal").style.display = "none";
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+
+document.getElementById("donateForm").addEventListener("submit", (e) => {
+  e.preventDefault(); // Заборонити перезавантаження сторінки
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch("/api/donate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.message) {
+        showNotification(result.message);
+      }
+    })
+    .catch((error) => {
+      showNotification("Сталася помилка. Спробуйте ще раз.");
+      console.error("Error:", error);
+    });
+});
+
+// Функція для показу повідомлень
+function showNotification(message) {
+  const notification = document.getElementById("notification");
+  notification.textContent = message;
+  notification.classList.remove("hidden");
+  notification.classList.add("visible");
+
+  // Сховати сповіщення через 3 секунди
+  setTimeout(() => {
+    notification.classList.remove("visible");
+    notification.classList.add("hidden");
+  }, 3000);
+}
+</script>
+
+
+
+
+
+
+
+
+<div id="donet">
+  <section id="feature" class="transparent-bg" style="padding-top: 60px;">
+    <div class="container">
+      <div class="center wow fadeInDown">
+        <h2>Подаруйте надію, підтримайте життя – кожна пожертва важлива для наших тварин!</h2>
+        <p class="lead" style="font-size: 1.2em;">Єдиний спосіб, завдяки якому ми можемо підтримувати цей притулок для тварин, — це ваші пожертви. Ми з радістю приймемо будь-яку суму, яку ви зможете нам допомогти. Будь ласка, будьте якнайщедрішими, і ми зможемо забезпечити найкращий догляд за тваринами.</p>
+      </div>
+      <div class="row contact-wrap">
+        <div class="donation-container">
+          <!-- Ліва частина з формою донату -->
+          <div class="donation-form">
+            
+    <h2>Зробіть пожертвування</h2>
+   <div id="toast" class="toast hidden">
+    <div id="toast-message"></div>
+</div>
+
+    <form action="/api/donate" method="post">
+        <label for="first-name">Ваше ім'я:</label>
+        <input type="text" id="first-name" name="first_name" placeholder="Введіть ваше ім'я" required />
+
+        <label for="last-name">Ваше прізвище:</label>
+        <input type="text" id="last-name" name="last_name" placeholder="Введіть ваше прізвище" required />
+
+        <label for="email">Ваш емейл:</label>
+        <input type="email" id="email" name="email" placeholder="Введіть ваш емейл" required />
+
+        <label for="card-info">Дані картки:</label>
+        <input type="text" id="card-info" name="card_info" placeholder="Введіть дані картки" required />
+
+        <label for="amount">Сума пожертвування:</label>
+        <input type="number" id="amount" name="amount" placeholder="Введіть суму" required />
+
+        <button type="submit">Зробити пожертвування</button>
+    </form>
+</div>
+
+          <!-- Права частина з фотографією -->
+          <div class="donation-image">
+            <img src="imganimal/catcorm.jpg" alt="Фото донату" />
+          </div>
+        </div>
+        <img id="Thankyou" src="images/Thank You.png">
+      </div><!--/.row-->
+    </div><!--/.container-->
+  </section><!--/#contact-page-->
+</div>
+
+    </section>
+
+</div>
+
+
+<style>
+  .toast {
+  position: fixed;
+  top: 20px; /* Відстань від верхнього краю */
+  right: 20px; /* Відстань від правого краю */
+  background-color: #28a745; /* Колір фону для успіху (зелений) */
+  color: white; /* Колір тексту */
+  padding: 10px 20px; /* Відступи всередині */
+  border-radius: 5px; /* Заокруглені кути */
+  border: 2px solid #2c7a3d; /* Темніша рамка для додаткового ефекту */
+  font-size: 16px; /* Розмір шрифта */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тінь для кращого вигляду */
+  display: none; /* Спочатку приховане */
+  opacity: 0; /* Прозорість */
+  transition: opacity 0.3s ease-in-out; /* Плавний ефект появи */
+}
+
+.toast.show {
+  display: block;
+  opacity: 1; /* Повна видимість */
+}
+
+.toast.hidden {
+  display: none;
+  opacity: 0;
+}
+
+
+</style>
+
+
+
+<script>
+
+
+
+
+// Функція для показу тосту
+function showToast(message, type = "success") {
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toast-message");
+
+    toastMessage.textContent = message;
+
+    // Встановлюємо колір тосту в залежності від типу повідомлення
+    toast.style.backgroundColor = type === "success" ? "#28a745" : "#dc3545"; // Зелене для успіху, червоне для помилки
+
+    // Додаємо клас show для показу
+    toast.classList.add("show");
+    toast.classList.remove("hidden");
+
+    // Автоматичне приховування через 3 секунди
+    setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hidden");
+    }, 3000); // Тост зникне через 3 секунди
+}
+
+
+document.getElementById('donation-form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Зупиняє перезавантаження сторінки
+
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const email = document.getElementById('email').value;
+    const cardInfo = document.getElementById('card-info').value;
+    const amount = document.getElementById('amount').value;
+
+    // Перевірка на порожні поля
+    if (!firstName || !lastName || !email || !cardInfo || !amount) {
+        showToast('Будь ласка, заповніть всі поля.', 'error');
+        return;
+    }
+
+    // Відправка даних на сервер
+    const response = await fetch('/api/donate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ first_name: firstName, last_name: lastName, email, card_info: cardInfo, amount }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        showToast(data.message || 'Дякуємо за вашу пожертву!'); // Зелене повідомлення
+        document.getElementById('donation-form').reset(); // Очищаємо форму після відправки
+    } else {
+        showToast(data.message || 'Щось пішло не так. Спробуйте ще раз.', 'error'); // Червоне повідомлення для помилки
+    }
+});
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="volonter"></div>
+    <section id="portfolio">
+        <div class="container">
+            <div class="center">
+               <h2>Наші волонтери</h2>
+               <p class="lead">Волонтери, які вже працюють у нашому притулку для тварин, — чудові люди. Вони знаходять час у своєму насиченому графіку, щоб допомагати у притулку. Ми вважаємо це дуже благородною справою, оскільки у нас немає зайвих коштів для утримання цього притулку для тварин. Люди, які приходять до нас працювати, отримують знання про все, що стосується добробуту тварин, і це означає, що вони можуть виконувати всі ті ж обов'язки, що й наші доглядальники. Це дуже корисна життєва навичка, і ми віримо, що таким чином ми також навчаємо людей про птахів, адже вони виконують усі завдання, які виконують доглядальники у нашому притулку. Тут ви також можете знайти інформацію про завдання, які виконують волонтери, і як стати волонтером самостійно.</p>
+            </div>
+       
+
+            <div class="row">
+                <div class="portfolio-items">
+                    <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
+                        <div class="recent-work-wrap">
+                            <img class="img-responsive" src="imganimal/pexels-bertellifotografia-16652376.jpg" alt="">
+                            <div class="overlay">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">Догляд за тваринами:</a></h3>
+                                    <p align="center" style="font-size: larger;">Ми навчаємо правильного годування, догляду за шерстю, підтримки гігієни та створення комфортних умов для тварин. Волонтери дізнаються, як допомогти тваринам адаптуватися до нових умов та зберігати їхнє здоров’я. </p>
+                                </div> 
+                            </div>
+                        </div>
+                    </div><!--/.portfolio-item-->
+
+                    <div class="portfolio-item joomla bootstrap col-xs-12 col-sm-4 col-md-3">
+                        <div class="recent-work-wrap">
+                            <img class="img-responsive" src="imganimal/pexels-dmitry-ovsyannikov-271243380-23427623.jpg" alt="">
+                            <div class="overlay">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">Поведінка тварин:</a></h3>
+                                    <p align="center" style="font-size: larger;">Ми вчимо розуміти сигнали тварин, їхню поведінку та потреби. Ви дізнаєтесь, як встановити довірливі стосунки з тваринами, працювати з наляканими чи агресивними улюбленцями та допомагати їм соціалізуватися.</p>
+                                </div> 
+                            </div>
+                        </div>          
+                    </div><!--/.portfolio-item-->
+
+                    <div class="portfolio-item bootstrap wordpress col-xs-12 col-sm-4 col-md-3">
+                        <div class="recent-work-wrap">
+                            <img class="img-responsive" src="imganimal/pexels-774990922-28644631.jpg" alt="">
+                            <div class="overlay">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">Перша допомога:</a></h3>
+                                    <p align="center" style="font-size: larger;">Ви опануєте базові навички першої допомоги тваринам у разі травм, інтоксикації чи інших невідкладних станів. Волонтери навчаться діяти впевнено у критичних ситуаціях, до приїзду ветеринара.</p>
+                                </div> 
+                            </div>
+                        </div>        
+                    </div><!--/.portfolio-item-->
+
+                    <div class="portfolio-item joomla wordpress apps col-xs-12 col-sm-4 col-md-3">
+                        <div class="recent-work-wrap">
+                            <img class="img-responsive" src="imganimal/pexels-mikhail-nilov-7474466.jpg" alt="">
+                            <div class="overlay">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">Правила безпеки :</a></h3>
+                                    <p align="center" style="font-size: larger;">Ми навчаємо, як взаємодіяти з тваринами, дотримуючись безпечних методів роботи. Ви також дізнаєтесь про важливість етичного ставлення до тварин, поваги до їхніх потреб та захисту їхніх прав. </p>
+                               </div>
+                            </div>
+                         </div>
+                     </section><!--/#portfolio-item-->
+
+                <section id="contact-page">
+    <div class="container">
+     <div class="center">
+        <div id="volonters">
+    <h2>Хочете стати волонтером?</h2>
+    <p class="lead" style="font-size: 1.5em;">Твоя доброта може бути тим, чого так не вистачає тваринам у світі. Твої руки — це найкраща надія для тих, хто потребує допомоги.</p>
+    
+    <!-- Кнопка для відкриття модального вікна -->
+    <button class="btn-volunteer" id="volunteerBtn">Стати волонтером</button>
+
+    <!-- Кнопка голубого кольору нижче -->
+    <a href="#donet" class="btn-blue" target="_blank">Зробити пожерту</a>
+    </div>
+</div>
+
+<!-- Модальне вікно для реєстрації волонтерів -->
+<!-- Модальне вікно для реєстрації волонтерів -->
+<div id="volunteer-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeBtn">&times;</span>
+        <h2>Стань героєм для тварин!</h2>
+        <p class="lead">Щодня сотні тварин потребують вашої допомоги та турботи. Волонтерство — це не просто добра справа, це шанс змінити життя беззахисних створінь на краще. Приєднавшись до нас, ви станете частиною великої родини людей, які люблять тварин і прагнуть зробити цей світ добрішим.</p>
+        <div class="volunteer-form-container">
+            <h2>Реєстрація для волонтерів</h2>
+            <form id="volunteer-form">
+                <label for="first-name">Ваше ім'я:</label>
+                <input type="text" id="first-name" name="first-name" placeholder="Введіть ваше ім'я" required />
+                <input type="text" id="last-name" name="last-name" placeholder="Введіть ваше прізвище" required />
+                <input type="tel" id="phone-number" name="phone-number" placeholder="Введіть номер телефону" required />
+                <input type="time" id="availability-time" name="availability-time" required />
+                <input type="number" id="days-per-week" name="days-per-week" placeholder="Кількість днів на тиждень" min="1" max="7" required />
+                <input type="number" id="hours-per-day" name="hours-per-day" placeholder="Кількість годин на день" min="1" required />
+                <button type="submit">Зареєструватися</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+        
+
+    </div><!--/.container-->
+</section><!--/#contact-page-->
+
+
+
+
+
+
+
+<script>
+const form = document.getElementById("volunteer-form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // Перешкоджаємо стандартному відправленню форми
+
+  const firstName = document.getElementById("first-name").value.trim();
+  const lastName = document.getElementById("last-name").value.trim();
+  const phoneNumber = document.getElementById("phone-number").value.trim();
+  const availabilityTime = document.getElementById("availability-time").value.trim();
+  const daysPerWeek = document.getElementById("days-per-week").value.trim();
+  const hoursPerDay = document.getElementById("hours-per-day").value.trim();
+
+  // Перевірка на порожні поля
+  if (!firstName || !lastName || !phoneNumber || !availabilityTime || !daysPerWeek || !hoursPerDay) {
+    alert("Будь ласка, заповніть всі поля.");
+    return; // Зупиняємо виконання, якщо поля не заповнені
+  }
+
+  const data = {
+    first_name: firstName,
+    last_name: lastName,
+    phone_number: phoneNumber,
+    availability_time: availabilityTime,
+    days_per_week: daysPerWeek,
+    hours_per_day: hoursPerDay
+  };
+
+  console.log(data); // Вивести дані для перевірки
+
+  // Відправка даних на сервер через fetch
+  fetch("/api/volunteer", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Вказуємо формат JSON
+    },
+    body: JSON.stringify(data), // Перетворюємо дані у JSON
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Response from server:", data);
+    alert(data.message); // Вивести повідомлення від сервера
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Сталася помилка при реєстрації.");
+  });
+});
+
+
+
+// Отримуємо елементи
+const modal = document.getElementById("volunteer-modal");
+const btn = document.getElementById("volunteerBtn");
+const closeBtn = document.getElementById("closeBtn");
+
+// Відкриваємо модальне вікно при натисканні на кнопку "Стати волонтером"
+btn.addEventListener("click", () => {
+    modal.style.display = "block";
+});
+
+// Закриваємо модальне вікно при натисканні на хрестик
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+// Закриваємо модальне вікно при натисканні на будь-яке місце поза модальним вікном
+window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+
+</script>
+
+
+</div>
+
+
+
+<div id="history">
+
+<section id="blog">
+    <div class="content-wrapper">
+        <div class="center">
+            <h2>Тварини, що змінюють життя</h2>
+            <p class="lead">Взяти тварину з притулку — це не просто допомога, це нова історія любові та турботи. Коти та собаки, які пережили труднощі, здатні навчити нас щирості, довіри та відданості. Вони приносять у наші домівки радість, тепло та безумовну любов. Тварини допомагають знайти сенс у повсякденності, розфарбовують сірі дні новими емоціями й дарують відчуття справжньої дружби. Вони змінюють життя на краще, нагадуючи, що навіть у найважчі часи завжди є місце для турботи й щастя. Зробивши цей вибір, ви змінюєте не лише їхнє життя, а й своє.</p>
+        </div>
+
+        <div class="stories">
+            <!-- Перша історія -->
+            <div class="story">
+                <img src="imganimal/6454b1f619a92ce64bebbdd8362bae3a.jpg" alt="Кіт Мурчик">
+                <div class="text">
+                    <h3>Марія</h3>
+                    <h4>Кіт Мурчик</h4>
+                    <p>Марія довго переживала важкі часи після втрати близької людини. Їй було важко знайти сенс у повсякденності, поки одного дня вона не завітала до притулку для тварин. Там її увагу привернув рудий кіт на ім'я Мурчик. Його сумні очі та спокійний характер одразу зворушили серце дівчини.
+
+Марія забрала Мурчика додому, і відтоді її життя почало змінюватися. Кожен ранок тепер починається з муркотіння, а вечори стали теплішими завдяки затишку, який створював її новий друг. "Мурчик допоміг мені знову відчути радість життя", — каже Марія..</p>
+                </div>
+            </div>
+
+            <!-- Друга історія -->
+            <div class="story">
+                <img src="imganimal/bb84037340bdb70b7b76c23657a8b42f.jpg" alt="Пес Рекс">
+                <div class="text">
+                    <h3>Олексій</h3>
+                    <h4>Рекс</h4>
+                    <p>Олексій був самотній і не міг знайти своє місце в житті. Якось він побачив оголошення про притулок, який шукав господарів для собак. Вирішивши поїхати туди, він зустрів Рекса — великого собаку, якого покинули попередні власники.
+
+Рекс одразу підкорив серце Олексія своєю відданістю та бажанням бути поруч. Вони стали нерозлучними: разом гуляли парком, подорожували та навіть займалися спортом. "Рекс дав мені силу повірити в себе і не боятися змін", — розповідає Олексій..</p>
+                </div>
+            </div>
+
+            <!-- Третя історія -->
+            <div class="story">
+                <img src="imganimal/depositphotos_77389014-stock-photo-dogs-people-connection-adoption.jpg" alt="Пес Бобік">
+                <div class="text">
+                    <h3>Ліза</h3>
+                    <h4>Бобік</h4>
+                    <p>Ліза завжди мріяла мати собаку, але не могла наважитися на цей крок через роботу й постійний брак часу. Одного разу, побувавши у притулку, вона побачила Бобіка — маленького песика, який довго боровся з хворобами та байдужістю людей.
+
+Рішення взяти Бобіка змінило все: Ліза навчилася знаходити час для прогулянок, стала більш організованою і навіть завела нових друзів у місцевому парку. "Бобік показав мені, що любов і турбота можуть зробити життя кращим", — ділиться Ліза.  </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+
+
+
+<div id="info-animall">
+<section id="info-animall">
+<div class="center">                
+            <h2>Знайшли тварину?</h2>
+           <p class="lead" style="font-size: 1.5em; line-height: 1.8;"> <br>Заповніть форму, щоб допомогти безпритульній тварині .<br> Ви можете 
+        завантажити фото, вказати місце знаходження та описати ситуацію. </p>
+
+        </div>
+<div class="found-pet-form">
+  <h2>Повідомити про знайдену тварину</h2>
+  <form id="foundPetForm" enctype="multipart/form-data">
+    <label for="pet-type">Тип тварини:</label>
+    <select id="pet-type" name="petType" required>
+      <option value="">Оберіть тип</option>
+      <option value="dog">Собака</option>
+      <option value="cat">Кіт</option>
+    </select>
+
+    <label for="location">Локація:</label>
+    <input type="text" id="location" name="location" placeholder="Вкажіть місцезнаходження" required />
+
+    <label for="description">Опис ситуації:</label>
+    <textarea id="description" name="description" placeholder="Опишіть ситуацію" rows="5" required></textarea>
+
+    <label for="pet-photo">Фото тварини:</label>
+    <input type="file" id="pet-photo" name="pet-photo" accept="image/*" required />
+
+    <button type="submit">Надіслати</button>
+  </form>
+</div>
+
+<div id="toast" class="toast hidden">
+  <span id="toast-message"></span>
+</div>
+
+
+<script>
+
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+  const toastMessage = document.getElementById("toast-message");
+
+  // Налаштування повідомлення і кольору
+  toastMessage.textContent = message;
+  toast.style.backgroundColor = type === "success" ? "#28a745" : "#dc3545";
+
+  // Показати тост
+  toast.classList.add("show");
+  toast.classList.remove("hidden");
+
+  // Автоматичне приховування через 3 секунди
+  setTimeout(() => {
+    toast.classList.remove("show");
+    toast.classList.add("hidden");
+  }, 3000);
+}
+
+</script>
+
+
+
+<script>
+  document.getElementById("foundPetForm").addEventListener("submit", (e) => {
+    e.preventDefault(); // Запобігає перезавантаженню сторінки
+    const formData = new FormData(e.target);
+
+    fetch("/api/found-pet", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message) {
+          showToast(result.message, "success"); // Використання тосту для повідомлення про успіх
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        showToast("Сталася помилка. Спробуйте ще раз.", "error"); // Використання тосту для повідомлення про помилку
+      });
+  });
+</script>
+
+
+
+
+<div class="partnerss">
+                <ul>
+                    <li>
+                        <div class="photo-cardss" onclick="changePhoto(this)">
+                             <img src="imganimal/pngwing.com (2).png" alt="">
+                        </div>
+                    </li>
+
+
+                     <li>
+                        <div class="photo-cardss2" onclick="changePhoto(this)">
+                          
+                            <img src="imganimal/pngwing.com (5).png" alt="">
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>      
+
+
+            </div>
+</section>
+</div>
+
+
+<div id="aboutus"></div>
+
+   <section id="contact-info">
+    <div class="center">
+        <h2>Як нас знайти?</h2>
+        <p class="lead" style="font-size: 1.5em; line-height: 1.8;">Ласкаво просимо до нашого притулку для тварин!<br /><br /> Ось де ви можете нас знайти )))</p>
+    </div>
+    <div class="gmap-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 text-center">
+                    <div class="gmap">
+                        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20693.936644110727!2d24.022880990582422!3d49.83608239956381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473addf9f3422045%3A0x39af7e2b32ca9451!2z0JTQvtC80ZbQstC60LAg0LLRgNGP0YLQvtCy0LDQvdC40YUg0YLQstCw0YDQuNC9!5e1!3m2!1suk!2sua!4v1733350870825!5m2!1suk!2sua" 
+                                width="600" height="450" style="border:0;" 
+                                allowfullscreen="" loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="col-sm-6 map-content">
+                    <ul class="row">
+                        <li class="col-sm-12">
+                            <div align="center" id="cont">
+                                <address>
+                                    <h1 style="color: black;">Домівка врятованих тварин</h1>
+                                    <p>
+                                        <br>Львів
+                                        вулиця Олекси Довбуша 24 <br>
+                                    </p>
+                                    <p>
+                                        Номер телефону: <a href="tel:+380973110157">0973110157</a> <br>
+                                        Email: <a href="mailto:animalshelshelter@com.ua">animalshelshelter@com.ua</a>
+                                    </p>
+                                </address>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!--/gmap_area-->
+
+
+</div>
+
+
+<!--/#footer-->
+
+<footer id="footer" class="midnight-blue">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-sm-6">
+                &copy; <a href="mailto:animalshelshelter@com.ua">animalshelshelter@com.ua</a>
+            </div>
+            <div class="col-sm-6">
+                <ul class="footer-nav">
+                      <li style="font-size: 18px;"><a href="#info">Про нас</a></li>
+                        <li style="font-size: 18px;"><a href="#reviews">Відгуки</a></li> 
+                        <li style="font-size: 18px;"><a href="#animal">Взяти друга</a></li>
+                        <li style="font-size: 18px;"><a href="#donet">Допомогти</a></li>
+						<li style="font-size: 18px;"><a href="#volonter">Наші волонтери</a></li>
+                        <li style="font-size: 18px;"><a href="#info-animall">Знайшли тварину?</a></li>
+                        <li style="font-size: 18px;"><a href="#aboutus">Локація</a></li>  
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer><!--/#footer-->
+
+    <script>
+        function redirectWithStyle() {
+            // Після невеликої затримки, щоб зміна кольору була помітна, переходити на іншу сторінку
+            setTimeout(() => {
+                window.location.href = 'animaladopt.html';
+            }, 200);
+        }
+    </script>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/wow.min.js"></script>
+</body>
+</html>
+
+
