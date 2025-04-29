@@ -1,11 +1,11 @@
 Model Information:
-* title:	Watermelon fruit
-* source:	https://sketchfab.com/3d-models/watermelon-fruit-f120452f84bf4e979139b106bf9f096c
-* author:	catafest (https://sketchfab.com/catafest)
+* title:	Game Ready Fruit Asset Pack
+* source:	https://sketchfab.com/3d-models/game-ready-fruit-asset-pack-105da0b01b414fceb2feac631b0f64e8
+* author:	Meerschaum Digital (https://sketchfab.com/meerschaumdigital)
 
 Model License:
 * license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 * requirements:	Author must be credited. Commercial use is allowed.
 
 If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on "Watermelon fruit" (https://sketchfab.com/3d-models/watermelon-fruit-f120452f84bf4e979139b106bf9f096c) by catafest (https://sketchfab.com/catafest) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+This work is based on "Game Ready Fruit Asset Pack" (https://sketchfab.com/3d-models/game-ready-fruit-asset-pack-105da0b01b414fceb2feac631b0f64e8) by Meerschaum Digital (https://sketchfab.com/meerschaumdigital) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
